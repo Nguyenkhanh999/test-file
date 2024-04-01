@@ -1,0 +1,85 @@
+Ví dụ về useState 
+Ex 1 : Quản lý trạng thái của một form 
+import React, { useState } from 'react';
+
+function Form() {
+  const [formData, setFormData] = useState({ username: '', password: '' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  return (
+    <form>
+      <input type="text" name="username" value={formData.username} onChange={handleChange} />
+      <input type="password" name="password" value={formData.password} onChange={handleChange} />
+    </form>
+  );
+}
+Ex 2 : Quản lý hiển thị / ẩn nội dung 
+import React, { useState } from 'react';
+
+function ToggleContent() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <div>
+      <button onClick={toggleVisibility}>Toggle Content</button>
+      {isVisible && <p>This content is now visible!</p>}
+    </div>
+  );
+}
+
+
+Ví dụ về useEffect 
+Ex 1 : Gọi API cập nhật trạng thái 
+import React, { useState, useEffect } from 'react';
+
+function DataFetching() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []); // Empty dependency array ensures effect is only run once after mount
+
+  return (
+    <div>
+      <ul>
+        {data.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+Ex 2: Thực hiện các tác vụ dọn dẹp khi component bị gõ bỏ 
+
+
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(prevTime => prevTime + 1);
+    }, 1000);
+
+    // Cleanup function to clear interval when component is unmounted
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array ensures effect is only run once after mount
+
+  return (
+    <div>
+      <p>Timer: {time}</p>
+    </div>
+  );
+}
