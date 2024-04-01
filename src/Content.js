@@ -176,23 +176,26 @@ const lessons = [
   },
   {
     id: 3,
-    name: 'Arrow function '
+    name: 'Arrow function'
   }
 ]
 function Content() {
   
   const [lessonId, setLessonId] = useState(1)
-  
+
   useEffect(() => {
 
-  const handleComment = (e) => {
-    console.log(e);
+  const handleComment = ({ detail }) => {
+    console.log(detail);
   }
   
 
-  window.addEventListener(`lesson-1`, handleComment)
+  window.addEventListener(`lesson-${lessonId}`, handleComment)
+  return () => {
+    window.removeEventListener(`lesson-${lessonId}`, handleComment)
+  }
 
-  }, [])
+  }, [lessonId])
 
   return (
     <div>
