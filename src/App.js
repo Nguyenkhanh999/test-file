@@ -116,15 +116,61 @@
 //     </div>
 //   );
 // }
+// import React, { useState } from "react";
+// import Content from "./Content";
+// function App() {
+//   const [show, setShow] = useState(false);
+//   return (
+//     <div style={{ padding: 20 }}>
+//       <button onClick={() => setShow(!show)}> Toggle </button>
+//       {show && <Content />}
+//     </div>
+//   );
+// }
+// export default App;
+
+
+
+/*
+1. memo() -> Highter order component (HOC)
+2. useCallback()
+
+Hooks : là gắn vào dùng ở tring function component
+HOC: có hteer sử dụng được cho cả class và cả function 
+Render props
+*/ 
+// React.memo HOC
+// Trong thực tế khi nào cần dùng memo : có một component cần dùng nhiều props 
+// React.memo được gọi là Hihger order component (HOC) dùng đẻ ghi nhớ các prps của một component , quyết định xem có render lại component đó hay không để tối ưu về hiệu năng 
+// Ngắn gọn react.memo dùng để xử lý component tránh re-render trong tình huống không cần thiết
 import React, { useState } from "react";
 import Content from "./Content";
+
 function App() {
-  const [show, setShow] = useState(false);
+  const [count, setCount] = useState(0)
+
+  const [count2, setCount2] = useState(0)
+
+
+  const increase = () => {
+    setCount(count + 1)
+  }
+
+  const increase2 = () => {
+    setCount2(count2 + 1)
+  }
   return (
-    <div style={{ padding: 20 }}>
-      <button onClick={() => setShow(!show)}> Toggle </button>
-      {show && <Content />}
+    <div style={{ padding:'10px 32px'}}>
+      <Content count={count}/>
+      <h1>{count}</h1>
+      <h1>{count2}</h1>
+      <button onClick={increase}>
+        Bấm vô đi mi  !
+      </button>
+      <button onClick={increase2}>
+        Mi có bấm vô không  !
+      </button>
     </div>
-  );
+  )
 }
 export default App;

@@ -164,55 +164,143 @@
 // export default Content;
 
 //useEffect with fake Chat App
-import React, {useState, useEffect } from 'react';
-const lessons = [
-  {
-    id: 1,
-    name: 'ReactJs là gì ? tại áo nên học ReactJs'
-  },
-  {
-    id: 2,
-    name: 'SPA/MPA là gì ?'
-  },
-  {
-    id: 3,
-    name: 'Arrow function'
-  }
-]
-function Content() {
+// import React, {useState, useEffect } from 'react';
+// const lessons = [
+//   {
+//     id: 1,
+//     name: 'ReactJs là gì ? tại áo nên học ReactJs'
+//   },
+//   {
+//     id: 2,
+//     name: 'SPA/MPA là gì ?'
+//   },
+//   {
+//     id: 3,
+//     name: 'Arrow function'
+//   }
+// ]
+// function Content() {
   
-  const [lessonId, setLessonId] = useState(1)
+//   const [lessonId, setLessonId] = useState(1)
 
-  useEffect(() => {
+//   useEffect(() => {
 
-  const handleComment = ({ detail }) => {
-    console.log(detail);
-  }
+//   const handleComment = ({ detail }) => {
+//     console.log(detail);
+//   }
   
 
-  window.addEventListener(`lesson-${lessonId}`, handleComment)
-  return () => {
-    window.removeEventListener(`lesson-${lessonId}`, handleComment)
-  }
+//   window.addEventListener(`lesson-${lessonId}`, handleComment)
+//   return () => {
+//     window.removeEventListener(`lesson-${lessonId}`, handleComment)
+//   }
 
-  }, [lessonId])
+//   }, [lessonId])
 
+//   return (
+//     <div>
+//       <ul> {lessons.map(lesson => (
+//         <li
+//         key ={lesson.id}
+//         style={{
+//           color: lessonId === lesson.id ?
+//           'red':
+//           '#333'
+//         }} onClick={() => setLessonId(lesson.id)}
+//         >
+//           {lesson.name}
+//         </li>
+//        ))}
+//       </ul>
+//     </div>
+//   )
+// }
+// export default Content;
+
+
+// useLayoutEffect
+// import React, { useLayoutEffect, useState} from 'react';
+// function Content() {
+//   const [count, setCount] = useState (0)
+
+//   useLayoutEffect(() => {
+//     if(count > 3) 
+//     setCount(0)
+//   },[count])
+
+//   const handleRun = () => {
+//     setCount(count + 1)
+//   }
+//   return (
+//     <div>
+//       <h1>{count}</h1>
+//       <button onClick={handleRun} > Run </button>
+//     </div>
+//   )
+
+// }
+// export default Content;
+
+
+// useRef (reference : tham chiếu )
+// Nhận initialValue chỉ sử dụng lần đầu tiên
+// Luôn trả về object có property là current  
+
+// import React, { useRef, useState, useEffect} from 'react';
+// function Content() {
+//   const [count, setCount] = useState (60)
+
+//   const timmerId = useRef()
+
+//   const prevCount = useRef()
+
+//   const h1Ref = useRef()
+
+//   useEffect(() => {
+//     prevCount.current = count
+
+//   }, [count])
+
+//   useEffect(() => {
+//     const rect = h1Ref.current.getBoundingClientRect()
+//     console.log(rect)
+//   })
+
+//   const handleStart = () => {
+//      timmerId.current = setInterval(() => {
+
+//       setCount(prevCount => prevCount -1)
+//     }, 1000)
+
+//     console.log('Start -> ',timmerId.current );
+//   }
+//   const handleStop = () => {
+
+//     clearInterval( timmerId.current)
+
+//     console.log('Stop -> ', timmerId.current);    
+    
+//   }
+//   console.log(count, prevCount.current);
+//   return (
+//     <div style={{ padding: 20 }}> 
+//       <h1 ref={h1Ref}>{count}</h1>
+//       <button onClick={handleStart} > Start </button>
+//       <button onClick={handleStop} > Stop </button>
+//     </div>
+//   )
+
+// }
+// export default Content;
+
+
+
+//React.memo HOC 
+import { memo } from 'react';
+function Content({count}) {
+  console.log('re-render');
   return (
-    <div>
-      <ul> {lessons.map(lesson => (
-        <li
-        key ={lesson.id}
-        style={{
-          color: lessonId === lesson.id ?
-          'red':
-          '#333'
-        }} onClick={() => setLessonId(lesson.id)}
-        >
-          {lesson.name}
-        </li>
-       ))}
-      </ul>
-    </div>
+    <h2>Hello Chúng Mày {count} </h2>
   )
 }
-export default Content;
+export default memo(Content);
