@@ -135,7 +135,7 @@
 //   const [avatar, setAvatar] = useState();
 //   useEffect(() => {
 
-//     //cleanup 
+//     //cleanup
 //     return () => {
 //       //
 //       avatar && URL.revokeObjectURL(avatar.preview)
@@ -148,7 +148,6 @@
 //     const file = e.target.files[0];
 
 //     file.preview = URL.createObjectURL(file);
-    
 
 //     setAvatar(file);
 
@@ -180,7 +179,7 @@
 //   }
 // ]
 // function Content() {
-  
+
 //   const [lessonId, setLessonId] = useState(1)
 
 //   useEffect(() => {
@@ -188,7 +187,6 @@
 //   const handleComment = ({ detail }) => {
 //     console.log(detail);
 //   }
-  
 
 //   window.addEventListener(`lesson-${lessonId}`, handleComment)
 //   return () => {
@@ -217,14 +215,13 @@
 // }
 // export default Content;
 
-
 // useLayoutEffect
 // import React, { useLayoutEffect, useState} from 'react';
 // function Content() {
 //   const [count, setCount] = useState (0)
 
 //   useLayoutEffect(() => {
-//     if(count > 3) 
+//     if(count > 3)
 //     setCount(0)
 //   },[count])
 
@@ -241,10 +238,9 @@
 // }
 // export default Content;
 
-
 // useRef (reference : tham chiếu )
 // Nhận initialValue chỉ sử dụng lần đầu tiên
-// Luôn trả về object có property là current  
+// Luôn trả về object có property là current
 
 // import React, { useRef, useState, useEffect} from 'react';
 // function Content() {
@@ -278,12 +274,12 @@
 
 //     clearInterval( timmerId.current)
 
-//     console.log('Stop -> ', timmerId.current);    
-    
+//     console.log('Stop -> ', timmerId.current);
+
 //   }
 //   console.log(count, prevCount.current);
 //   return (
-//     <div style={{ padding: 20 }}> 
+//     <div style={{ padding: 20 }}>
 //       <h1 ref={h1Ref}>{count}</h1>
 //       <button onClick={handleStart} > Start </button>
 //       <button onClick={handleStop} > Stop </button>
@@ -293,14 +289,15 @@
 // }
 // export default Content;
 
-
-
-//React.memo HOC 
-import { memo } from 'react';
-function Content({count}) {
-  console.log('re-render');
+//React.memo HOC
+import { memo } from "react";
+function Content({ onIncrease }) {
+  console.log("re-render");
   return (
-    <h2>Hello Chúng Mày {count} </h2>
-  )
+    <>
+      <h2>Hello Chúng Mày </h2>
+      <button onClick={onIncrease}>Click </button>
+    </>
+  );
 }
 export default memo(Content);
