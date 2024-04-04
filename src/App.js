@@ -315,91 +315,156 @@ Render props
 
 // ToDo App with Reducer hook
 
-import { useReducer } from "react";
+// import { useReducer, useRef } from "react";
 
-// useReducer
-// /*
-// 1. Init state: 0
-const initState = {
-  job: "",
-  jobs: [],
-};
-// 2. Actions: Up (State + 1) / Down (State - 1)
+// // useReducer
+// // /*
+// // 1. Init state: 0
+// const initState = {
+//   job: "",
+//   jobs: [],
+// };
+// // 2. Actions: Up (State + 1) / Down (State - 1)
 
-const SET_JOB = "set_job";
+// const SET_JOB = "set_job";
 
-const ADD_JOB = "add_job";
+// const ADD_JOB = "add_job";
 
-const DELETE_JOB = "delete_job";
+// const DELETE_JOB = "delete_job";
 
-const setJob = (payLoad) => {
-  return {
-    type: SET_JOB,
-    payLoad,
-  };
-};
-const addJob = (payLoad) => {
-  return {
-    type: ADD_JOB,
-    payLoad,
-  };
-};
+// const setJob = (payload) => {
+//   return {
+//     type: SET_JOB,
+//     payload,
+//   }
+// }
+// const addJob = (payload) => {
+//   return {
+//     type: ADD_JOB,
+//     payload,
+//   }
+// }
+// const deleteJob = (payload) => {
+//   return {
+//     type: DELETE_JOB,
+//     payload,
+//   }
+// }
 
-// 3. Reducer
-const reducer = (state, action) => {
-  console.log("Action: ", action);
-  console.log("Prev State: ", state);
-  let newState;
+// // 3. Reducer
+// const reducer = (state, action) => {
+//   console.log("Action: ", action);
+//   console.log("Prev State: ", state);
 
-  switch (action.type) {
-    case SET_JOB:
-      return {
-        ...state,
-        job: action.payload,
-      };
-      break;
-    case ADD_JOB:
-      return {
-        ...state,
-        job: [...state.jobs, action.payload],
-      };
-      break;
-    default:
-      throw new Error("Invalid action.");
-  }
-  console.log("New state : ", newState);
-  return newState;
-};
-// 4. Dispath
-//  */
-function App() {
-  const [state, dispatch] = useReducer(reducer, initState);
+//   let newState;
 
-  const { job, jobs } = state;
+//   switch (action.type) {
+//     case SET_JOB:
+//       newState = {
+//         ...state,
+//         job: action.payload,
+//       };
+//       console.log(" here");
+//       break;
+//     case ADD_JOB:
+//       newState = {
+//         ...state,
+        
+//         jobs: [...state.jobs, action.payload],
+//       };
+//       break;
+//     case DELETE_JOB:
 
-  //submit
+//     const newJobs = [...state.jobs]
 
-  const handleSubmit = () => {
-    dispatch(addJob(job));
-  };
+//     newJobs.splice(action.payload, 1)
+
+//     newState = {
+//         ...state,
+//         jobs: newJobs
+//       }
+
+//       break
+//     default:
+//       throw new Error("Invalid action.");
+//   }
+//   console.log("New state : ", newState);
+//   return newState;
+// };
+// // 4. Dispatch
+// //  */
+// function App() {
+//   const [state, dispatch] = useReducer(reducer, initState);
+
+//   const inputRef = useRef()
+
+//   const { job, jobs } = state;
+
+//   //submit
+
+//   const handleSubmit = () => {
+//     dispatch(addJob(job));
+//     dispatch(setJob(''));
+
+
+//     inputRef.current.focus()
+//   };
+
+//   return (
+//     <div style={{ padding: "0 20px", marginLeft: "400px", marginTop: "80px" }}>
+//       <h3>ToDo</h3>
+//       <input
+//       ref={inputRef}
+//         style={{ fontSize: "20px" }}
+//         value={job}
+//         placeholder="Enter Todo..."
+//         onChange={(e) => {
+//           dispatch(setJob(e.target.value));
+//         }}
+//       />
+//       <button 
+//       style={{ fontSize: '20px', background: '#7FFFD4', border: 'none'}}
+//       onClick={handleSubmit}> 
+//       Add + </button>
+//       <ul>
+//         {jobs.map((job, index) => (
+//           <li key={index}>{job} 
+//           <span onClick={() => dispatch(deleteJob(index))}>
+//           &times;
+//           </span>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+// export default App;
+
+// import TodoApp from './Todo'
+
+// function App() {
+//   return <TodoApp />
+// }
+// export default App
+
+
+
+import { useState } from 'react'
+import Content from './Content' 
+import './App.css'
+
+function App () {
+  const [theme , setTheme] = useState('dark')
+
+const toggleTheme = () => {
+  setTheme(theme === 'dark' ? 'light': 'dark')
+}
 
   return (
-    <div style={{ padding: "0 20px" }}>
-      <h3>ToDo</h3>
-      <input
-        value={job}
-        placeholder="Enter Todo..."
-        onChange={(e) => {
-          dispatch(setJob(e.target.value));
-        }}
-      />
-      <button onClick={handleSubmit}> Add </button>
-      <ul>
-        {jobs.map((job, index) => (
-          <li key={index}>{job} &times;</li>
-        ))}
-      </ul>
+    <div style={{ padding: 20}}>
+      <button onClick={toggleTheme}> Toggle Theme </button>
+      < Content theme={theme}/>
     </div>
-  );
+  )
 }
-export default App;
+export default App

@@ -290,14 +290,25 @@
 // export default Content;
 
 //React.memo HOC
-import { memo } from "react";
-function Content({ onIncrease }) {
-  console.log("re-render");
+// import { memo } from "react";
+// function Content({ onIncrease }) {
+//   console.log("re-render");
+//   return (
+//     <>
+//       <h2>Hello Chúng Mày </h2>
+//       <button onClick={onIncrease}>Click </button>
+//     </>
+//   );
+// }
+// export default memo(Content);
+
+import Paragraph from './paragraph' 
+
+function Content({ theme }) {
   return (
-    <>
-      <h2>Hello Chúng Mày </h2>
-      <button onClick={onIncrease}>Click </button>
-    </>
-  );
+    <div>
+      <Paragraph theme={theme} />
+    </div>
+  )
 }
-export default memo(Content);
+export default Content
