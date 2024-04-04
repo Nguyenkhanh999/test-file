@@ -302,13 +302,13 @@
 // }
 // export default memo(Content);
 
-import Paragraph from './paragraph' 
+import Paragraph from "./paragraph";
 
-function Content({ theme }) {
+function Content() {
   return (
     <div>
-      <Paragraph theme={theme} />
+      <Paragraph />
     </div>
-  )
+  );
 }
-export default Content
+export default Content;

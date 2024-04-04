@@ -369,7 +369,7 @@ Render props
 //     case ADD_JOB:
 //       newState = {
 //         ...state,
-        
+
 //         jobs: [...state.jobs, action.payload],
 //       };
 //       break;
@@ -406,7 +406,6 @@ Render props
 //     dispatch(addJob(job));
 //     dispatch(setJob(''));
 
-
 //     inputRef.current.focus()
 //   };
 
@@ -422,13 +421,13 @@ Render props
 //           dispatch(setJob(e.target.value));
 //         }}
 //       />
-//       <button 
+//       <button
 //       style={{ fontSize: '20px', background: '#7FFFD4', border: 'none'}}
-//       onClick={handleSubmit}> 
+//       onClick={handleSubmit}>
 //       Add + </button>
 //       <ul>
 //         {jobs.map((job, index) => (
-//           <li key={index}>{job} 
+//           <li key={index}>{job}
 //           <span onClick={() => dispatch(deleteJob(index))}>
 //           &times;
 //           </span>
@@ -447,24 +446,16 @@ Render props
 // }
 // export default App
 
+// import Content from "./Content";
+import React from "react";
+import "./App.css";
+import Content from "./Content";
 
-
-import { useState } from 'react'
-import Content from './Content' 
-import './App.css'
-
-function App () {
-  const [theme , setTheme] = useState('dark')
-
-const toggleTheme = () => {
-  setTheme(theme === 'dark' ? 'light': 'dark')
-}
-
+function App() {
   return (
-    <div style={{ padding: 20}}>
-      <button onClick={toggleTheme}> Toggle Theme </button>
-      < Content theme={theme}/>
+    <div style={{ padding: 20 }}>
+      <button> Toggle Theme </button>
     </div>
-  )
+  );
 }
-export default App
+export default App;

@@ -1,12 +1,10 @@
+import { useContext } from "react";
+// import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 
+function Paragraph() {
+  const theme = useContext(ThemeContext);
 
-function Paragraph ({ theme }) {
-
-    console.log('theme: ', theme);
-    return  (
-        <p className={theme}>
-            Đây là code 
-        </p>
-    )
+  return <p className={theme}>Đây là code</p>;
 }
-export default Paragraph
+export default Paragraph;
