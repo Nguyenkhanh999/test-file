@@ -447,14 +447,48 @@ Render props
 // export default App
 
 // import Content from "./Content";
-import React from "react";
-import "./App.css";
-import Content from "./Content";
+// import React from "react";
+// import "./App.css";
+// import Content from "./Content";
 
+// function App() {
+//   return (
+//     <div style={{ padding: 20 }}>
+//       <button> Toggle Theme </button>
+//     </div>
+//   );
+// }
+// export default App;
+
+// Cài đặt router
+import { Routes, Route, Link } from "react-router-dom";
+import HomePage from "./pages/Home";
+import NewsPage from "./pages/News";
+import ContactPage from "./pages/Contact";
 function App() {
   return (
-    <div style={{ padding: 20 }}>
-      <button> Toggle Theme </button>
+    <div style={{ padding: "100px" }} className="bg-gray-100	">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" className="text-red-600">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/news"> News </Link>
+          </li>
+          <li>
+            <Link to="/contact"> Contact </Link>
+          </li>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
     </div>
   );
 }

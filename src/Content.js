@@ -302,13 +302,13 @@
 // }
 // export default memo(Content);
 
-import Paragraph from "./paragraph";
+// import Paragraph from "./paragraph";
 
-function Content() {
-  return (
-    <div>
-      <Paragraph />
-    </div>
-  );
-}
-export default Content;
+// function Content() {
+//   return (
+//     <div>
+//       <Paragraph />
+//     </div>
+//   );
+// }
+// export default Content;
